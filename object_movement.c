@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:56 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 20:38:55 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:31:00 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	move_object(t_point *object, t_matrix matrix)
 {
 	while (object)
 	{
-		object->vector = vector_x_matrix(object->vector, matrix);
+		object->result = vector_x_matrix(object->result, matrix);
 		object = object->next;
 	}
 }
@@ -32,9 +32,9 @@ void	isometric_object(t_point *object, int scale)
 	rot_mat_z = create_rotation_z(M_PI_4);
 	while (object)
 	{
-		object->vector = vector_x_matrix(object->vector, scale_mat);
-		object->vector = vector_x_matrix(object->vector, rot_mat_z);
-		object->vector = vector_x_matrix(object->vector, rot_mat_x);
+		object->result = vector_x_matrix(object->vector, scale_mat);
+		object->result = vector_x_matrix(object->result, rot_mat_z);
+		object->result = vector_x_matrix(object->result, rot_mat_x);
 		object = object->next;
 	}
 }
@@ -46,20 +46,11 @@ void	isometric_object(t_point *object, int scale)
 void	paralel_object(t_point *object, int scale)
 {
 	t_matrix	scale_mat;
-	t_matrix	rot_mat_x;
-	t_matrix	rot_mat_y;
-	t_matrix	rot_mat_z;
 
 	scale_mat = create_scale(scale);
-	rot_mat_x = create_rotation_x(M_PI_4);
-	rot_mat_y = create_rotation_y(M_PI_4);
-	rot_mat_z = create_rotation_z(M_PI_4);
 	while (object)
 	{
-		object->vector = vector_x_matrix(object->vector, scale_mat);
-		object->vector = vector_x_matrix(object->vector, rot_mat_z);
-		object->vector = vector_x_matrix(object->vector, rot_mat_x);
-		object->vector = vector_x_matrix(object->vector, rot_mat_y);
+		object->result = vector_x_matrix(object->vector, scale_mat);
 		object = object->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel<       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:38:35 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 19:11:57 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:32:42 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	proportional_color(int percentage, int color, int max_color)
 	int	new_b;
 	int	nw_color;
 
+	if (color == max_color)
+		return (color);
 	new_t = proportional_trgb(percentage,
 			color >> 24 & 255, max_color >> 24 & 255);
 	new_r = proportional_trgb(percentage,
@@ -39,14 +41,24 @@ int	proportional_color(int percentage, int color, int max_color)
 	new_b = proportional_trgb(percentage,
 			color & 255, max_color & 255);
 	nw_color = new_t << 24 | new_r << 16 | new_g << 8 | new_b;
-	printf(" | Percentage: '%d' color: %#x\n", percentage, nw_color);
 	return (nw_color);
 }
 
 int	height_map_color(int percentage)
 {
-	percentage = percentage * 100 / 200;
-	printf("Percentage: '%d' ", percentage);
+	percentage = percentage * 100 / 588;
+	if (percentage < 0)
+		return (proportional_color(-percentage, GREEN, BLUE));
+	if (percentage < 20)
+		return (GREEN);
+	if (percentage < 120)
+		return (proportional_color(percentage - 20, GREEN, YELLOW));
+	if (percentage <= 170)
+		return (proportional_color(percentage - 120, YELLOW, RED));
+	else
+		return (proportional_color(percentage - 150, ORANGE, PURPLE));
+}
+/*
 	if (percentage < 0)
 	{
 		printf("Opcion 0");
@@ -69,13 +81,13 @@ int	height_map_color(int percentage)
 	}
 	if (percentage < 400)
 	{
-		printf("Opcion 4");
+		printf("Opcion 4"); 
 		return (proportional_color(percentage - 300, YELLOW, RED));
 	}
 	if (percentage <= 500)
 	{
 		printf("Opcion 5");
-		return (proportional_color(percentage - 400, RED, PINK));
+		return (proportional_color(percentage - 400, RED, PURPLE));
 	}
 	return (proportional_color(percentage, RED + BLUE, 0));
-}
+}*/

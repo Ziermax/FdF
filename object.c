@@ -6,11 +6,13 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:23:31 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 20:18:33 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:46:53 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "color.h"
+#include "object.h"
 
 void	free_points(t_point	**obj_points)
 {
@@ -36,7 +38,7 @@ t_point	*create_point(void)
 	point = malloc(sizeof(t_point));
 	if (!point)
 		return (NULL);
-	point->color = 0xFFffFFff;
+	point->color = WHITE;
 	point->printed = 0;
 	point->up = NULL;
 	point->down = NULL;
@@ -49,26 +51,23 @@ t_point	*create_point(void)
 void	set_object(t_object *object)
 {
 	t_point	*point;
-	int		max_z;
 	int		min_z;
+	int		max_z;
 
-	max_z = 0;
 	min_z = 0;
+	max_z = 0;
 	point = object->points;
 	object->upleft = point;
-	while (point->next)
+	while (point)
 	{
-		if (point->vector.z > 0 && point->vector.z > max_z)
-			max_z = point->vector.z;
-		else if (point->vector.z < 0 && point->vector.z < min_z)
-			min_z = point->vector.z;
-		if (point->vector.x == object->columns - 1 && point->vector.y == 0)
-			object->upright = point;
-		if (point->vector.x == 0 && point->vector.y == object->rows - 1)
-			object->downleft = point;
+		set_object_height(point, 0);
+		set_corners(point, object);
+		set_connections(point);
 		point->vector.x = point->vector.x - (object->columns - 1) / 2;
 		point->vector.y = point->vector.y - (object->rows - 1) / 2;
 		point = point->next;
 	}
-	object->slices = max_z - min_z;
+	object->slices = set_object_height(NULL, 1);
+	set_color(object);
+	printf("base: %d\n", min_z);
 }

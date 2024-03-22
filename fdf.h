@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:56:25 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 19:54:04 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:27:46 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_vector
 typedef struct s_point
 {
 	t_vector		vector;
+	t_vector		result;
 	int				color;
 	int				printed;
 	struct s_point	*up;
@@ -55,16 +56,30 @@ typedef struct s_object
 	int		rows;
 	int		columns;
 	int		slices;
+	float	scale;
+	int		win_hei;
+	int		win_len;
 	t_point	*upleft;
 	t_point	*upright;
 	t_point	*downleft;
 	t_point	*downright;
 }	t_object;
 
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+	t_object	*object;
+}	t_vars;
+
 void		print_point(t_point *obj);
+void		print_object(t_point *obj);
+void		print_info(t_object info);
+void		my_mlx_pixel_put(t_data *img, int x, int y, int color);
 void		free_points(t_point **obj_points);
 t_object	make_object(char *file);
 void		isometric_object(t_point *object, int scale);
 void		paralel_object(t_point *object, int scale);
+void		draw_object(t_object *object, t_data *img);
 
 #endif
