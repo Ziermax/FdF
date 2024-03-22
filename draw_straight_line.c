@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:05:28 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 21:04:43 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:52:29 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_straight_line_x(int x[2], int y[2], int color[2], t_data *img)
 	while (pixel_y < y[1] || pixel_y > y[1])
 	{
 		if (pixel_y < HEIGTH && pixel_y >= 0)
-		my_mlx_pixel_put(img, x[0], pixel_y, color[0]);
+			my_mlx_pixel_put(img, x[0], pixel_y, color[0]);
 		if (pixel_y < y[1])
 			pixel_y += 1;
 		else

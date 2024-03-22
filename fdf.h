@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:56:25 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 20:27:46 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:58:45 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_vars
 {
 	void		*mlx;
 	void		*win;
+	t_data		*img;
+	t_data		*next_img;
 	t_object	*object;
 }	t_vars;
 
