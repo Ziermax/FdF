@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:23:31 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/20 18:46:53 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:47:41 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	set_object(t_object *object)
 	}
 	object->slices = set_object_height(NULL, 1);
 	set_color(object);
-	printf("base: %d\n", min_z);
 }

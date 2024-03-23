@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:55:11 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 20:11:10 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:11:42 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,6 @@ int	get_points_in_row(char *line, t_object *object)
 	}
 	return (count);
 }
-/*
-int	get_points_in_row(char *line, t_object *object)
-{
-	int	count;
-
-	count = 0;
-	while (*line && count != object->columns)
-	{
-		while (*line == ' ' || (*line >= '\t' && *line <= '\r'))
-			line++;
-		if (*line)
-		{
-			printf(" pnt:'%c' ", *line);
-			make_point(&line, object, count);
-			count += 1;
-		}
-		if (!object->points)
-			return (0);
-		while (*line && *line != ' ' && *line < '\t' && *line > '\r')
-			printf(" skp:'%c' ", *(line++));
-		if (count == 15)
-			return (0);
-	}
-	return (count);
-}*/
 
 void	get_points(t_text *text, t_object *object)
 {

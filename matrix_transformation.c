@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:56:48 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:57:16 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:43:45 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_matrix	create_rotation_z(float angle)
 	return (matrix);
 }
 
-t_matrix	create_scale(int scale)
+t_matrix	create_scale(int scale, int	percentage)
 {
 	t_vector	scale_x;
 	t_vector	scale_y;
@@ -63,5 +63,11 @@ t_matrix	create_scale(int scale)
 	scale_x = create_vector(scale, 0, 0);
 	scale_y = create_vector(0, scale, 0);
 	scale_z = create_vector(0, 0, scale);
+	if (percentage != 100)
+	{
+		scale_x.x = scale_x.x * percentage / 100;
+		scale_y.y = scale_y.y * percentage / 100;
+		scale_z.z = scale_z.z * percentage / 100;
+	}
 	return (create_matrix(scale_x, scale_y, scale_z));
 }

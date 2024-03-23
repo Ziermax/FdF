@@ -6,11 +6,12 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:56:57 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 17:57:09 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:46:32 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "color.h"
 
 void	print_point(t_point *obj)
 {
@@ -52,4 +53,19 @@ void	print_info(t_object info)
 	printf("Upright:\t%p\n", info.upright);
 	printf("Downleft:\t%p\n", info.downleft);
 	printf("Downright:\t%p\n", info.downright);
+}
+
+void	paint_color(t_data *img)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGTH)
+	{
+		x = 0;
+		while (x < LENGHT)
+			my_mlx_pixel_put(img, x++, y, height_map_color(y * 1000 / HEIGTH));
+		y++;
+	}
 }

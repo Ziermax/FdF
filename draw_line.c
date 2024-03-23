@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 18:40:28 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 20:23:27 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:19:54 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,38 @@ void	draw_line_y(int x[2], int y[2], int color[2], t_data *img)
 	}
 }
 
+int	check_case(int x[2], int y[2])
+{
+	int	diff_x;
+	int	diff_y;
+
+	if (x[0] >= LENGHT || x[0] < 0 || x[1] >= LENGHT || x[1] < 0
+		|| y[0] >= HEIGTH || y[0] < 0 || y[1] >= HEIGTH || y[1] < 0)
+		return (NO_IN_SCREEN);
+	diff_x = x[1] - x[0];
+	diff_y = y[1] - y[0];
+	if (!diff_x && !diff_y)
+		return (SAME_POINT);
+	if (diff_x < 0)
+		diff_x = -diff_x;
+	if (diff_y < 0)
+		diff_y = -diff_y;
+	if (!diff_x && diff_y)
+		return (STRAIGHT_X);
+	if (!diff_y && diff_x)
+		return (STRAIGHT_Y);
+	if (diff_x > diff_y)
+		return (DIFF_X);
+	else
+		return (DIFF_Y);
+}
+
 void	draw_connection(t_point *start, t_point *final, t_data *img)
 {
 	int	x[2];
 	int	y[2];
 	int	color[2];
-	int	diff[2];
+	int	do_case;
 
 	x[0] = start->result.x + LENGHT / 2;
 	x[1] = final->result.x + LENGHT / 2;
@@ -77,8 +103,24 @@ void	draw_connection(t_point *start, t_point *final, t_data *img)
 	y[1] = final->result.y + HEIGTH / 2;
 	color[0] = start->color;
 	color[1] = final->color;
-	diff[0] = x[1] - x[0];
+
+	do_case = check_case(x, y);
+	if (do_case == NO_IN_SCREEN || do_case == SAME_POINT)
+		return ;
+	if (do_case == STRAIGHT_X)
+		return (draw_straight_line_x(x, y, color, img));
+	if (do_case == STRAIGHT_Y)
+		return (draw_straight_line_y(x, y, color, img));
+	if (do_case == DIFF_X)
+		draw_line_x(x, y, color, img);
+	else
+		draw_line_y(x, y, color, img);
+}
+/*	diff[0] = x[1] - x[0];
 	diff[1] = y[1] - y[0];
+	if ((x[0] >= LENGHT && x[0] < 0) || (x[1] >= LENGHT && x[1] < 0)
+		|| (y[0] >= HEIGTH && y[0] < 0) || (y[1] >= HEIGTH && y[1] < 0))
+		return ;
 	if (!diff[0] && diff[1])
 		return (draw_straight_line_x(x, y, color, img));
 	if (!diff[1] && diff[0])
@@ -90,8 +132,7 @@ void	draw_connection(t_point *start, t_point *final, t_data *img)
 	if (diff[0] > diff[1])
 		draw_line_x(x, y, color, img);
 	else
-		draw_line_y(x, y, color, img);
-}
+		draw_line_y(x, y, color, img);*/
 
 void	draw_points_connections(t_point *point, t_data *img)
 {

@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:20:09 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 19:13:44 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:59:37 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define UP_RIGHT 2
 # define DOWN_LEFT 3
 # define DOWN_RIGHT 4
+# define NO_IN_SCREEN 0
+# define SAME_POINT 1
+# define STRAIGHT_X 2
+# define STRAIGHT_Y 3
+# define DIFF_X 4
+# define DIFF_Y 5
 
 typedef struct s_equation
 {

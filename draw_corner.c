@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:14:16 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 18:43:15 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:57:27 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	draw_from_downright(t_point *point, t_data *img)
 
 	while (point)
 	{
-		aux = point->right;
+		aux = point->left;
 		while (point)
 		{
 			draw_points_connections(point, img);
@@ -75,11 +75,3 @@ void	draw_from_downright(t_point *point, t_data *img)
 		point = aux;
 	}
 }
-/*	if (!point)
-		return ;
-	draw_points_connections(point, img);
-	if (point->left && !point->left->printed)
-		draw_from_downright(point->left, img);
-	if (point->up && !point->up->printed)
-		draw_from_downright(point->up, img);
-}*/

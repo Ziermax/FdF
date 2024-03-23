@@ -6,11 +6,12 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:04:18 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 20:29:16 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:04:40 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include "fdf.h"
 
 t_point	*find_farthest_corner(t_object *object, int *case_flag)
 {
@@ -56,4 +57,20 @@ void	draw_object(t_object *object, t_data *img)
 	if (corner_case == DOWN_RIGHT)
 		draw_from_downright(farthest_corner, img);
 }
-//	printf("farthest corner: [%p] case:%d\n", farthest_corner, corner_case);
+/*
+void	draw_object(t_object *object, t_data *img)
+{
+	t_point	*point;
+	int		x;
+	int		y;
+
+	point = object->points;
+	while (point)
+	{
+		x = point->result.x + LENGHT / 2;
+		y = point->result.y + HEIGTH / 2;
+		if (x < LENGHT && x >= 0 && y < HEIGTH && y >= 0)
+			my_mlx_pixel_put(img, x, y, point->color);
+		point = point->next;
+	}
+}*/

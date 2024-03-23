@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:56:25 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/22 19:58:45 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:05:55 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,19 @@ typedef struct s_vars
 	t_object	*object;
 }	t_vars;
 
+/*	Functions of print.c*/
 void		print_point(t_point *obj);
 void		print_object(t_point *obj);
 void		print_info(t_object info);
+void		paint_color(t_data *img);
+/*	Functions of fdf.c*/
 void		my_mlx_pixel_put(t_data *img, int x, int y, int color);
+/*	Functions of object.c*/
 void		free_points(t_point **obj_points);
+/*	Functions of make_object.c*/
 t_object	make_object(char *file);
-void		isometric_object(t_point *object, int scale);
-void		paralel_object(t_point *object, int scale);
+/*	Functions of draw_object.c*/
 void		draw_object(t_object *object, t_data *img);
+/*	No se donde ponerlas*/
 
 #endif

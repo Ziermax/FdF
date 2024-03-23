@@ -6,12 +6,11 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:05:28 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/22 19:52:29 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:10:43 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "color.h"
 #include "draw.h"
 
 void	draw_straight_line_x(int x[2], int y[2], int color[2], t_data *img)

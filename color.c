@@ -6,11 +6,10 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel<       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:38:35 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/20 19:32:42 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:09:06 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "color.h"
 
 int	proportional_trgb(int percentage, int color, int max_color)
@@ -58,36 +57,3 @@ int	height_map_color(int percentage)
 	else
 		return (proportional_color(percentage - 150, ORANGE, PURPLE));
 }
-/*
-	if (percentage < 0)
-	{
-		printf("Opcion 0");
-		return (proportional_color(percentage, 0, BLUE));
-	}
-	if (percentage < 100)
-	{
-		printf("Opcion 1");
-		return (proportional_color(percentage, BLUE, LBLUE));
-	}
-	if (percentage < 200)
-	{
-		printf("Opcion 2");
-		return (proportional_color(percentage - 100, LBLUE, GREEN));
-	}
-	if (percentage < 300)
-	{
-		printf("Opcion 3");
-		return (proportional_color(percentage - 200, GREEN, YELLOW));
-	}
-	if (percentage < 400)
-	{
-		printf("Opcion 4"); 
-		return (proportional_color(percentage - 300, YELLOW, RED));
-	}
-	if (percentage <= 500)
-	{
-		printf("Opcion 5");
-		return (proportional_color(percentage - 400, RED, PURPLE));
-	}
-	return (proportional_color(percentage, RED + BLUE, 0));
-}*/
