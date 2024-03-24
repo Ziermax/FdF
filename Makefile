@@ -8,6 +8,7 @@ SRC = fdf.c \
 	  color.c draw_line.c draw_straight_line.c draw_corner.c draw_object.c \
 	  display_image.c mlx_image.c
 OBJ = ${SRC:.c=.o}
+INC = ${SRC:.c=.d}
 MLXLIB = libmlx.a
 
 all:${NAME}
@@ -23,7 +24,9 @@ ${MLXLIB}:
 	mv minilibx_macos/${MLXLIB} ./
 
 clean:
-	rm -rf ${OBJ} *.d ${MLXLIB}
+	rm -rf ${OBJ}
+	rm -rf ${INC}
+	rm -rf ${MLXLIB}
 	make clean -C minilibx_macos
 
 fclean: clean
@@ -31,6 +34,6 @@ fclean: clean
 
 re: fclean all
 
--include *.d
+-include ${INC}
 
 .PHONY: all clean fclean re
