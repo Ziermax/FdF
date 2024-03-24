@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:58:44 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/24 18:31:23 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:46:38 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 #include "display.h"
 #include "keyboard.h"
 
+int	destroy_and_leave(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	free_points(&vars->object->points);
+	exit(0);
+}
+
 int	key_event(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(0);
-	}
+		destroy_and_leave(vars);
 	if (keycode == KEY_SHIFT)
 	{
 		vars->object->only_points *= -1;
@@ -57,38 +61,34 @@ void	display_window(t_object *obj)
 	vars.img = &img;
 	isometric_view(vars.object, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_event, &vars);
+	mlx_hook(vars.win, 17, 0, destroy_and_leave, &vars);
 	mlx_loop(vars.mlx);
 }
 
-void	print_info(t_object info)
+float	get_scale(int rows, int columns)
 {
-	printf("###INFO###:\n");
-	printf("Point:\t\t%p\n", info.points);
-	printf("Rows:\t\t%d\n", info.rows);
-	printf("Columns:\t%d\n", info.columns);
-	printf("Slices:\t\t%d\n", info.slices);
-	printf("Upleft:\t\t%p\n", info.upleft);
-	printf("Upright:\t%p\n", info.upright);
-	printf("Downleft:\t%p\n", info.downleft);
-	printf("Downright:\t%p\n", info.downright);
+	float	row_scale;
+	float	column_scale;
+
+	row_scale = HEIGTH * 0.8 / rows;
+	column_scale = LENGHT * 0.8 / columns;
+	if (row_scale < column_scale)
+		return (row_scale);
+	else
+		return (column_scale);
 }
 
 int	main(int argc, char **argv)
 {
 	t_object	object;
 
-	if (argc != 3)
+	if (argc != 2)
 		return (0);
-	if (argv[2][1])
-		return (write(1, "Parameters syntax error\n", 24));
 	object = make_object(argv[1]);
 	if (!object.points)
 		return (1);
-	object.scale = object.slices * object.rows * object.columns;
-	object.scale = argv[2][0] - '0';
-	object.scale = object.scale * 10 + 5;
+	object.scale = get_scale(object.rows, object.columns);
 	object.only_points = 1;
-	print_info(object);
 	display_window(&object);
 	free_points(&object.points);
 }

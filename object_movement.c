@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:56 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/24 18:21:16 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:23:22 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ void	move_object(t_point *point, int distance, int direction)
 	while (point)
 	{
 		if (distance && direction != -1 && direction == KEY_A)
-			point->result.x -= distance;
-		else if (distance && direction != -1 && direction == KEY_S)
-			point->result.y += distance;
-		else if (distance && direction != -1 && direction == KEY_D)
 			point->result.x += distance;
-		else if (distance && direction != -1 && direction == KEY_W)
+		else if (distance && direction != -1 && direction == KEY_S)
 			point->result.y -= distance;
+		else if (distance && direction != -1 && direction == KEY_D)
+			point->result.x -= distance;
+		else if (distance && direction != -1 && direction == KEY_W)
+			point->result.y += distance;
 		point->printed = 0;
 		point = point->next;
 	}
 }
 
-void	isometric_object(t_point *point, int scale)
+void	isometric_object(t_point *point, float scale)
 {
 	t_matrix	scale_mat;
 	t_matrix	rot_mat_x;
@@ -59,7 +59,7 @@ void	isometric_object(t_point *point, int scale)
 	}
 }
 
-void	paralel_object(t_point *point, int scale)
+void	paralel_object(t_point *point, float scale)
 {
 	t_matrix	scale_mat;
 
