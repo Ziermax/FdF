@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:56:25 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/24 17:53:01 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:30:19 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@
 
 # define LENGHT 1920
 # define HEIGTH 1080
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 typedef struct s_vector
 {
@@ -64,6 +55,15 @@ typedef struct s_object
 	int		only_points;
 }	t_object;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 typedef struct s_vars
 {
 	void		*mlx;
@@ -73,14 +73,10 @@ typedef struct s_vars
 	t_object	*object;
 }	t_vars;
 
-/*	Functions of mlx_image.c*/
 void		clear_image(t_vars *vars, t_data *img);
 void		my_mlx_pixel_put(t_data *img, int x, int y, int color);
-/*	Functions of object.c*/
 void		free_points(t_point **obj_points);
-/*	Functions of make_object.c*/
 t_object	make_object(char *file);
-/*	Functions of draw_object.c*/
 void		draw_object(t_object *object, t_data *img);
 
 #endif

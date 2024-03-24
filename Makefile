@@ -12,14 +12,19 @@ MLXLIB = libmlx.a
 
 all:${NAME}
 
-${NAME}: ${OBJ}
-	${CC} ${CFLAGS} -framework OpenGL -framework AppKit ${OBJ} libmlx.a -o ${NAME}
+${NAME}: ${OBJ} ${MLXLIB}
+	${CC} ${CFLAGS} -framework OpenGL -framework AppKit ${OBJ} ${MLXLIB} -o ${NAME}
 
 %.o:%.c Makefile
 	${CC} ${CFLAGS} -MMD -Imlx -c $<
 
+${MLXLIB}:
+	@make -C minilibx_macos
+	mv minilibx_macos/${MLXLIB} ./
+
 clean:
-	rm -rf ${OBJ} *.d
+	rm -rf ${OBJ} *.d ${MLXLIB}
+	make clean -C minilibx_macos
 
 fclean: clean
 	rm -rf ${NAME}
