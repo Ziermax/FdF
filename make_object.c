@@ -6,11 +6,10 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 19:55:11 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/23 17:11:42 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:52:26 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "object.h"
 
 void	make_point(char **line, t_object *object, int column)

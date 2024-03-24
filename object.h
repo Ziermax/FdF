@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 20:56:57 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/20 18:29:22 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:22:55 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_text
 	struct s_text	*next;
 }	t_text;
 
-void	print_text(t_text *text);
+//void	print_text(t_text *text);
 void	free_text(t_text **text);
 void	free_points(t_point **obj_points);
 t_text	*read_file(char *filename);

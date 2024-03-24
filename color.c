@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel<       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:38:35 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/23 17:09:06 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:20:52 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ int	proportional_color(int percentage, int color, int max_color)
 
 int	height_map_color(int percentage)
 {
-	percentage = percentage * 100 / 588;
+	percentage = percentage * 100 / 666;
+	if (percentage < -100)
+		return (proportional_color(100 - percentage, BLUE, BLACK));
 	if (percentage < 0)
 		return (proportional_color(-percentage, GREEN, BLUE));
-	if (percentage < 20)
-		return (GREEN);
-	if (percentage < 120)
-		return (proportional_color(percentage - 20, GREEN, YELLOW));
-	if (percentage <= 170)
-		return (proportional_color(percentage - 120, YELLOW, RED));
+	if (percentage < 100)
+		return (proportional_color(percentage, GREEN, YELLOW));
+	if (percentage <= 150)
+		return (proportional_color(percentage - 100, YELLOW, RED));
 	else
 		return (proportional_color(percentage - 150, ORANGE, PURPLE));
 }

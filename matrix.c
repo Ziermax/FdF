@@ -6,11 +6,10 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:18:44 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/19 19:08:11 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:52:55 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "matrix.h"
 
 t_vector	create_vector(float x, float y, float z)

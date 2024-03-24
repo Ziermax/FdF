@@ -6,11 +6,10 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:23:31 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/23 16:47:41 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:44:01 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "color.h"
 #include "object.h"
 
@@ -65,6 +64,10 @@ void	set_object(t_object *object)
 		set_connections(point);
 		point->vector.x = point->vector.x - (object->columns - 1) / 2;
 		point->vector.y = point->vector.y - (object->rows - 1) / 2;
+		if (!(object->columns % 2))
+			point->vector.x -= 0.5;
+		if (!(object->rows % 2))
+			point->vector.y -= 0.5;
 		point = point->next;
 	}
 	object->slices = set_object_height(NULL, 1);

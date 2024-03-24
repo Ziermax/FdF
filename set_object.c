@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:56:24 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/21 15:54:53 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:13:09 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ void	set_connections(t_point *point)
 	}
 }
 
-void	reset_colors(t_object *object, int *allow_flag, int color_stop)
+void	reset_colors(t_object *object, int *allow_flag, int stop)
 {
 	t_point	*point;
+	int		i;
 
 	point = object->points;
 	*allow_flag = 0;
-	while (point && point->color != color_stop)
+	i = 1;
+	while (point && i < stop)
 	{
 		point->color = WHITE;
 		point = point->next;
+		i++;
 	}
 }
 
@@ -80,18 +83,20 @@ void	set_color(t_object *object)
 	int		z_range;
 	int		z;
 	int		allow;
+	int		i;
 
 	allow = 1;
 	point = object->points;
 	z_range = object->slices;
+	i = 1;
 	while (point)
 	{
 		z = point->vector.z;
-		if (allow && point->color != (int)WHITE)
-			reset_colors(object, &allow, point->color);
+		if (allow && (unsigned int)point->color != WHITE)
+			reset_colors(object, &allow, i);
 		if (allow && z_range)
 			point->color = height_map_color(z * 1000 / z_range);
 		point = point->next;
+		i++;
 	}
 }
-	//	point->vector.z = z - z_range / 2;

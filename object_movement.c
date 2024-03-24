@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:14:56 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/03/23 17:44:16 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:21:16 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	move_object(t_point *point, int distance, int direction)
 {
 	while (point)
 	{
-		if (direction == KEY_A)
+		if (distance && direction != -1 && direction == KEY_A)
 			point->result.x -= distance;
-		if (direction == KEY_S)
+		else if (distance && direction != -1 && direction == KEY_S)
 			point->result.y += distance;
-		if (direction == KEY_D)
+		else if (distance && direction != -1 && direction == KEY_D)
 			point->result.x += distance;
-		if (direction == KEY_W)
+		else if (distance && direction != -1 && direction == KEY_W)
 			point->result.y -= distance;
 		point->printed = 0;
 		point = point->next;
@@ -58,10 +58,6 @@ void	isometric_object(t_point *point, int scale)
 		point = point->next;
 	}
 }
-//		printf("\n###Operacion###\nAntes de operar:\n");
-//		print_point(point);
-//		printf("Despues de operar:\n");
-//		print_point(point);
 
 void	paralel_object(t_point *point, int scale)
 {
